@@ -9,16 +9,20 @@
   height: 700px;
   background: url('../assets/road.png') repeat-x;
   background-size: auto;
-  animation: animation 100000s linear infinite;
 }
+
 /* Animation takes so long to avoid the image stuttering */
 @keyframes animation {
   0% {
     background-position: 0 0;
   }
   100% {
-    background-position: -10000000px 0;
+    background-position: -290000px 0;
   }
+}
+
+#game-area.playing {
+  animation: animation 1000s linear infinite;
 }
 
 #character {
@@ -32,9 +36,18 @@
   height: 80px;
 }
 
-#play-btn {
+#info-container {
   position: absolute;
   z-index: 999;
+  color: white;
+  font-size: 32px;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -25%);
+  text-align: center;
+}
+
+#play-btn {
   background-color: orange;
   color: white;
   font-size: 36px;
@@ -43,8 +56,56 @@
   border-radius: 8px;
   letter-spacing: 5px;
   padding: 15px 45px;
-  left: 50%;
-  top: 25%;
-  transform: translate(-50%, -25%);
   cursor: pointer;
+  margin-top: 50px;
+}
+
+#game-area.playing #info-container {
+  display: none;
+}
+
+.jump {
+  animation: jump 0.8s ease-out;
+}
+
+@keyframes jump {
+  0% {
+    bottom: 75px;
+  }
+  50% {
+    bottom: 220px;
+  }
+  100% {
+    bottom: 75px;
+  }
+}
+
+.obstacle {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 75px;
+  width: 50px;
+  height: 50px;
+  background: white;
+  font-weight: 900;
+  animation: move 8s linear forwards;
+  border-radius: 5px;
+}
+
+@keyframes move {
+  0% {
+    right: -30px;
+  }
+
+  100% {
+    right: 100vw;
+  }
+}
+
+#game-over {
+  font-size: 2em;
+  color: red;
+  display: none;
 }
