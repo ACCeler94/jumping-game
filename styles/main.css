@@ -8,7 +8,7 @@
   position: relative;
   height: 700px;
   background: url('../assets/road.png') repeat-x;
-  background-size: contain;
+  background-size: auto;
   animation: animation 100000s linear infinite;
 }
 /* Animation takes so long to avoid the image stuttering */
