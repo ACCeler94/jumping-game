@@ -1,0 +1,33 @@
+* {
+	margin: 0;
+	padding: 0;
+  box-sizing: border-box;
+}
+
+#game-area {
+  position: relative;
+  height: 700px;
+  background: url('../assets/road.png') repeat-x;
+  background-size: contain;
+  animation: animation 100000s linear infinite;
+}
+/* Animation takes so long to avoid the image stuttering */
+@keyframes animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -10000000px 0;
+  }
+}
+
+#character {
+  position: absolute;
+  z-index: 999;
+  bottom: 75px;
+  left: 50px;
+}
+
+#character img {
+  height: 80px;
+}
