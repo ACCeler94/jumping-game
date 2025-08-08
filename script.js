@@ -80,6 +80,7 @@ function resetGame() {
   isGameOver = false;
   isJumping = false;
   isPlaying = false;
+  score = 0;
 
   gameOverText.style.display = 'none';
   gameArea.classList.remove('playing');
@@ -95,8 +96,7 @@ function startGame() {
   document.addEventListener("keydown", onJump);
 
   spawnObstacles();
-  // Reset and start score counter
-  score = 0;
+  // Start the score counter
   updateScore();
   scoreIntervalId = setInterval(() => {
     if (!isGameOver) {
@@ -139,8 +139,4 @@ playBtn.addEventListener('click', () => {
   gameOverText.style.display = 'none';
   resetGame()
   startGame();
-
-  // Reset score display
-  score = 0;
-  updateScore();
 });
