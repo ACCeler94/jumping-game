@@ -99,11 +99,11 @@ function startGame() {
   score = 0;
   updateScore();
   scoreIntervalId = setInterval(() => {
-  if (!isGameOver) {
-    score++;
-    updateScore();
-  }
-}, 500); // Increase score every 0.5s
+    if (!isGameOver) {
+      score++;
+      updateScore();
+    }
+  }, 500); // Increase score every 0.5s
 
 }
 
@@ -128,10 +128,10 @@ function endGame() {
   });
 
   // Stop score counter
- if (scoreIntervalId) {
-  clearInterval(scoreIntervalId);
-  scoreIntervalId = null;
-}
+  if (scoreIntervalId) {
+    clearInterval(scoreIntervalId);
+    scoreIntervalId = null;
+  }
 
 }
 
@@ -143,5 +143,4 @@ playBtn.addEventListener('click', () => {
   // Reset score display
   score = 0;
   updateScore();
-  
 });
