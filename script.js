@@ -7,6 +7,15 @@ let isPlaying = false;
 let isJumping = false;
 let isGameOver = false;
 let obstacleTimeoutId = null;
+let score = 0;
+let scoreIntervalId = null;
+
+const scoreElement = document.getElementById('score');
+
+// Update score display
+function updateScore() {
+  scoreElement.textContent = `Score: ${score}`;
+}
 
 function spawnObstacles() {
   if (isGameOver) {
@@ -86,6 +95,16 @@ function startGame() {
   document.addEventListener("keydown", onJump);
 
   spawnObstacles();
+  // Reset and start score counter
+  score = 0;
+  updateScore();
+  scoreIntervalId = setInterval(() => {
+  if (!isGameOver) {
+    score++;
+    updateScore();
+  }
+}, 500); // Increase score every 0.5s
+
 }
 
 function endGame() {
@@ -107,10 +126,22 @@ function endGame() {
   obstacles.forEach(o => {
     o.style.animationPlayState = "paused";
   });
+
+  // Stop score counter
+ if (scoreIntervalId) {
+  clearInterval(scoreIntervalId);
+  scoreIntervalId = null;
+}
+
 }
 
 playBtn.addEventListener('click', () => {
   gameOverText.style.display = 'none';
   resetGame()
   startGame();
+
+  // Reset score display
+  score = 0;
+  updateScore();
+  
 });

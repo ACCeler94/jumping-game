@@ -109,3 +109,13 @@
   color: red;
   display: none;
 }
+
+#score {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 999;
+}
