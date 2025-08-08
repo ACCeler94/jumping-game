@@ -119,3 +119,17 @@
   font-weight: bold;
   z-index: 999;
 }
+
+#quick-btn {
+  background-color: green;
+  color: white;
+  font-size: 32px;
+  font-weight: 800;
+  border: none;
+  border-radius: 8px;
+  letter-spacing: 3px;
+  padding: 12px 35px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+

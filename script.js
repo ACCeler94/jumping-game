@@ -2,6 +2,8 @@ const gameArea = document.getElementById("game-area");
 const character = document.getElementById("character");
 const gameOverText = document.getElementById("game-over");
 const playBtn = document.getElementById('play-btn');
+const quickBtn = document.getElementById('quick-btn');
+
 
 let isPlaying = false;
 let isJumping = false;
@@ -86,6 +88,9 @@ function resetGame() {
 }
 
 function startGame() {
+  // Hide Quick Restart button
+quickBtn.style.display = 'none';
+
   if (isPlaying) return;
 
   isPlaying = true;
@@ -133,6 +138,10 @@ function endGame() {
   scoreIntervalId = null;
 }
 
+// Show Quick Restart button
+quickBtn.style.display = 'inline-block';
+
+
 }
 
 playBtn.addEventListener('click', () => {
@@ -144,4 +153,11 @@ playBtn.addEventListener('click', () => {
   score = 0;
   updateScore();
   
+});
+
+// Quick Restart button logic
+quickBtn.addEventListener('click', () => {
+  gameOverText.style.display = 'none';
+  resetGame();
+  startGame();
 });
