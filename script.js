@@ -4,7 +4,6 @@ const gameOverText = document.getElementById("game-over");
 const playBtn = document.getElementById('play-btn');
 const quickBtn = document.getElementById('quick-btn');
 
-
 let isPlaying = false;
 let isJumping = false;
 let isGameOver = false;
@@ -69,11 +68,10 @@ const checkCollision = setInterval(() => {
       characterRect.left + characterRect.width > obsRect.left &&
       characterRect.bottom > obsRect.top
     ) {
-      endGame()
+      endGame();
     }
   });
 }, 10);
-
 
 function resetGame() {
   const obstacles = document.querySelectorAll(".obstacle");
@@ -82,14 +80,16 @@ function resetGame() {
   isGameOver = false;
   isJumping = false;
   isPlaying = false;
+  score = 0;
 
   gameOverText.style.display = 'none';
   gameArea.classList.remove('playing');
+  updateScore();
 }
 
 function startGame() {
   // Hide Quick Restart button
-quickBtn.style.display = 'none';
+  quickBtn.style.display = 'none';
 
   if (isPlaying) return;
 
@@ -100,16 +100,15 @@ quickBtn.style.display = 'none';
   document.addEventListener("keydown", onJump);
 
   spawnObstacles();
-  // Reset and start score counter
-  score = 0;
+
+  // Start the score counter
   updateScore();
   scoreIntervalId = setInterval(() => {
-  if (!isGameOver) {
-    score++;
-    updateScore();
-  }
-}, 500); // Increase score every 0.5s
-
+    if (!isGameOver) {
+      score++;
+      updateScore();
+    }
+  }, 500); // Increase score every 0.5s
 }
 
 function endGame() {
@@ -133,26 +132,20 @@ function endGame() {
   });
 
   // Stop score counter
- if (scoreIntervalId) {
-  clearInterval(scoreIntervalId);
-  scoreIntervalId = null;
+  if (scoreIntervalId) {
+    clearInterval(scoreIntervalId);
+    scoreIntervalId = null;
+  }
+
+  // Show Quick Restart button
+  quickBtn.style.display = 'inline-block';
 }
 
-// Show Quick Restart button
-quickBtn.style.display = 'inline-block';
-
-
-}
-
+// Play button logic
 playBtn.addEventListener('click', () => {
   gameOverText.style.display = 'none';
-  resetGame()
+  resetGame();
   startGame();
-
-  // Reset score display
-  score = 0;
-  updateScore();
-  
 });
 
 // Quick Restart button logic
